@@ -79,28 +79,21 @@ impl Gui {
             .open(&mut self.show_about)
             .show(ctx, |ui| {
                 ui.vertical_centered_justified(|ui| {
-                    ui.strong("chess-rs");
+                    ui.strong("Chess Board");
                     ui.strong(format!("v{}", env!("CARGO_PKG_VERSION")));
-                    ui.label("A Chess Engine written in Rust that runs natively and on the web!");
-                    ui.strong("⚖ MIT license");
-                    ui.strong("Author: Parth Pant");
-                    ui.strong("Email: parthpant4@gmail.com");
-                    use egui::special_emojis::{GITHUB, TWITTER};
-                    ui.hyperlink_to(
-                        format!("{} chess-rs on GitHub", GITHUB),
-                        "https://github.com/ParthPant/chess-rs",
-                    );
-                    ui.hyperlink_to(
-                        format!("{} @PantParth", TWITTER),
-                        "https://twitter.com/PantParth",
-                    );
+                    ui.label("A Chess Engine written in Rust for Machine Learning");
+                    ui.strong("Adi Tia Setiawan");
+                    ui.strong("Andi Saripati");
+                    ui.strong("Dzikri Akbar Syawali");
+                    ui.strong("Naufal Fauzi Akbar");
+                    ui.strong("M. Asykal Rizki");
                 });
             });
 
         egui::SidePanel::left("left_Panel")
             .frame(egui::Frame::central_panel(&ctx.style()).inner_margin(5.))
             .show_animated(ctx, self.show_menu, |ui| {
-                ui.strong("chess-rs");
+                ui.strong("Chess Board");
 
                 ui.heading("In Play");
                 ui.label({
@@ -143,6 +136,23 @@ impl Gui {
                 ui.separator();
 
                 ui.heading("AI");
+
+                ui.horizontal(|ui| {
+                    if ai.enabled {
+                        ui.label("AI Enabled");
+
+                        if ui.button("Disable").clicked() {
+                            ai.enabled = false;
+                        }
+                    } else {
+                        ui.label("AI Disabled");
+
+                        if ui.button("Enable").clicked() {
+                            ai.enabled = true;
+                        }
+                    }
+                });
+
                 ui.add(Slider::new(&mut ai.depth, 2..=8).text("Search Depth"));
                 ui.add(Slider::new(&mut ai.quiescence_depth, 2..=8).text("Quiescence Depth"));
 

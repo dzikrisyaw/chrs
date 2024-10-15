@@ -1,5 +1,5 @@
 [workspace]
-members = ["chrs-lib", "chrs-perft", "chrs"]
+members = ["chrs-lib", "chrs-perft", "chrs", "chrs-app"]
 default-members = ["chrs"]
 resolver = "2"
 

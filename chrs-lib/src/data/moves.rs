@@ -105,7 +105,7 @@ impl Move {
         }
         // Pawn: Double Push, En Passant and Promotion
         else if p == BoardPiece::WhitePawn {
-            if to as usize - from as usize == 16 {
+            if (to as usize).wrapping_sub(from as usize) == 16 {
                 move_type = DoublePush;
             } else if let Some(t) = c.en_passant_target {
                 if to == t {
@@ -117,7 +117,7 @@ impl Move {
                 move_type = Promotion(None);
             }
         } else if p == BoardPiece::BlackPawn {
-            if from as usize - to as usize == 16 {
+            if (from as usize).wrapping_sub(to as usize) == 16 {
                 move_type = DoublePush;
             } else if let Some(t) = c.en_passant_target {
                 if to == t {

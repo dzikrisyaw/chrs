@@ -366,7 +366,16 @@ impl Board {
     }
 
     fn get_glyph_path(p: &BoardPiece) -> String {
-        let s = format!("{}.svg", p);
+        let s = match p {
+            BoardPiece::WhitePawn => format!("{}.svg", "pp"),
+            BoardPiece::WhiteKnight => format!("{}.svg", "nn"),
+            BoardPiece::WhiteBishop => format!("{}.svg", "bb"),
+            BoardPiece::WhiteRook => format!("{}.svg", "rr"),
+            BoardPiece::WhiteQueen => format!("{}.svg", "qq"),
+            BoardPiece::WhiteKing => format!("{}.svg", "kk"),
+            _ => format!("{}.svg", p)
+        };
+
         s.to_owned()
     }
 

@@ -11,6 +11,7 @@ pub struct NegaMaxAI {
     pub depth: usize,
     pub quiescence_depth: usize,
     pub stats: AIStat,
+    pub enabled: bool,
     killer_moves: [[Option<Move>; Self::MAX_DEPTH]; 2],
     history_moves: [[i32; 64]; 12],
     table: TT,
@@ -26,13 +27,14 @@ impl Default for NegaMaxAI {
             depth: 5,
             quiescence_depth: 4,
             stats: Default::default(),
+            enabled: true,
             killer_moves: [[None; Self::MAX_DEPTH]; 2],
             history_moves: [[0; Self::MAX_DEPTH]; 12],
             table: Default::default(),
             pv_length: [0; Self::MAX_DEPTH],
             pv_table: [[None; Self::MAX_DEPTH]; Self::MAX_DEPTH],
             score_pv: false,
-            follow_pv: false,
+            follow_pv: false
         }
     }
 }
