@@ -135,19 +135,18 @@ impl Gui {
 
                 ui.separator();
 
-                ui.heading("AI");
-
                 ui.horizontal(|ui| {
-                    if ai.enabled {
-                        ui.label("AI Enabled");
+                    ui.heading("AI Configuration");
 
-                        if ui.button("Disable").clicked() {
+                    ui.spacing();
+                    ui.spacing();
+
+                    if ai.enabled {
+                        if ui.button("Enabled").clicked() {
                             ai.enabled = false;
                         }
                     } else {
-                        ui.label("AI Disabled");
-
-                        if ui.button("Enable").clicked() {
+                        if ui.button("Disabled").clicked() {
                             ai.enabled = true;
                         }
                     }
