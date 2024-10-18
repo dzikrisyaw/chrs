@@ -152,7 +152,7 @@ impl App {
                 Event::MainEventsCleared => {
                     if config.get_state() == GameState::InPlay {
                         let turn = config.get_active_color();
-                        if turn == Color::Black && ai.enabled {
+                        if ai.enabled {
                             let ai_move = ai.get_best_move(&config, &generator);
                             if let Some(ai_move) = ai_move {
                                 log::info!("AI response {:?}", ai.get_stats());
